@@ -1,0 +1,60 @@
+.carousel {
+    position: relative;
+    max-width:100%; /* Set the maximum width to 100% */
+    height: auto;
+    margin: 0;
+  }
+  
+  .carousel img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
+
+  }
+  body{
+    margin:0px;
+    padding:0px;
+  }
+  .prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 15px 5px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .prev {
+    left: 0;
+  }
+  
+  .next {
+    right: 0;
+  }
+  
+  .dots {
+    position: absolute;
+    bottom: 10px; /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .dot {
+    width: 10px; /* Adjust the size of the dots */
+    height: 10px; /* Adjust the size of the dots */
+    border-radius: 50%; /* Make the dots circular */
+    background-color: rgba(0, 0, 0, 0.5); /* Set the color of the dots */
+    margin: 0 5px; /* Adjust the spacing between dots */
+    cursor: pointer;
+  }
+  
+  .dot.active {
+    background-color: white; /* Set the color of the active dot */
+  }
+  

@@ -1,0 +1,36 @@
+/* Categories.css */
+
+/* Add transition for smooth effect */
+.cimg {
+    width: 60%;
+    height: 70%;
+    transition: transform 0.2s ease-in-out;
+    padding-top: 10px;
+    position: relative;
+}
+
+/* Increase scale on hover */
+.cimg:hover {
+    transform: scale(1.1);
+}
+
+/* Center align text */
+.cname {
+    text-align: center;
+    padding-top: 5px;
+}
+
+/* Add rounded corners to div elements */
+.round-div {
+    border-radius: 80px;
+}
+.marquee {
+    display: flex;
+    animation: marquee 20s linear infinite;
+  }
+  
+  @keyframes marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
+  

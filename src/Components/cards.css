@@ -1,0 +1,41 @@
+.cart{
+    box-sizing: border-box;
+    background-color: white;
+    min-height:280px;
+    
+  }
+  .cart:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  
+  }
+  .text-green{
+    color: rgb(6, 158, 6)
+  }
+  .text-yellow{
+    color:#faca51;
+  }
+  .title{
+    overflow: hidden; /* Hide any overflow text */
+    text-overflow: ellipsis; /* Add ellipsis (...) to indicate text truncation */
+  /* Prevent text from wrapping */
+    max-height: 2em;
+    white-space: nowrap;  
+  }
+  body{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+  .sold-out{
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  .sold-out-text {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: red;
+    color: black;
+    padding: 5px;
+  }
