@@ -36,7 +36,7 @@ const AddProduct = () => {
   }, []);
   const fetchSingleProduct = async () => {
     let data = await fetch(
-      "https://shopshuttle.onrender.com/get-product/" + id,
+      "http://localhost:5000/get-product/" + id,
       {
         method: "get",
         headers: {
@@ -97,7 +97,7 @@ const AddProduct = () => {
         }
         if (status) {
           let result = await fetch(
-            "https://shopshuttle.onrender.com/edit-product/" +
+            "http://localhost:5000/edit-product/" +
               sellerID +
               "/" +
               id,
@@ -112,7 +112,7 @@ const AddProduct = () => {
           }
         } else {
           let result = await fetch(
-            "https://shopshuttle.onrender.com/add-product/" + sellerID,
+            "http://localhost:5000/add-product/" + sellerID,
             {
               method: "POST",
               body: formData,

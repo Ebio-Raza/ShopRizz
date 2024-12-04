@@ -25,7 +25,7 @@ const OrderPage = () => {
   }, [data]);
   const getData = async () => {
     let result = await fetch(
-      "https://shopshuttle.onrender.com/get-Order/" + OrderID.id,
+      "http://localhost:5000/get-Order/" + OrderID.id,
       {
         method: "GET",
         headers: {
@@ -80,10 +80,7 @@ const OrderPage = () => {
                       <div className="row">
                         <div className="col-3">
                           <img
-                            src={`https://shopshuttle.onrender.com/${item.photos[0]
-                              .split("/")
-                              .slice(5)
-                              .join("/")}`}
+                            src={`http://localhost:5000/${item.photos[0]}`}
                             className="img-fluid"
                             alt={item.imageAlt}
                           />

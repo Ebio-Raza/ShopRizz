@@ -19,7 +19,7 @@ const Cart = () => {
         getData();
     },[]); 
     const getData = async () => {
-        let result = await fetch('https://shopshuttle.onrender.com/get-cartProduct/' + user,{
+        let result = await fetch('http://localhost:5000/get-cartProduct/' + user,{
             method:'get',
             headers:{
                 'Content-Type':'application/json'
@@ -35,7 +35,7 @@ const Cart = () => {
 
     const handleDelete = async (itemId) => {
         // Filter out the item with the given itemId from the cart data
-        let result = await fetch('https://shopshuttle.onrender.com/delete-cartProduct/'+user+'/'+itemId,{
+        let result = await fetch('http://localhost:5000/delete-cartProduct/'+user+'/'+itemId,{
             method:'delete',
             headers:{
                 'Content-Type':'application/json'
@@ -49,7 +49,7 @@ const Cart = () => {
     const handleOrderNow = async () => {
         const array = data.map(item => ({ product: item._id, quantity: item.Qty }));
         console.log(array);
-        let result = await fetch('https://shopshuttle.onrender.com/add-order/' + user, {
+        let result = await fetch('http://localhost:5000/add-order/' + user, {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json'
@@ -70,7 +70,7 @@ const Cart = () => {
                     <div className="col-sm-10 border rounded p-3 mt-2 mb-2" key={cartItem._id}>
                         <div className="row">
                             <div className="col-sm-3 col-lg-3 d-flex justify-content-center mb-3 mb-md-0">
-                                <img src={`https://shopshuttle.onrender.com/${cartItem.photos[0].split('/').slice(5).join('/')}`} width="140px" height="120px" alt="Product" className="img-fluid" />
+                                <img src={`http://localhost:5000/${cartItem.photos[0]}`} width="140px" height="120px" alt="Product" className="img-fluid" />
                             </div>
                             <div className="col-sm-7 col-lg-7">
                                 <h3>{cartItem.title}</h3>

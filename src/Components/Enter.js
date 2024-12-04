@@ -54,7 +54,7 @@ const Enter = ({ titleData, btnData, flag }) => {
                   address: address,
                 };
                 let result = await fetch(
-                  "https://shopshuttle.onrender.com/user-register",
+                  "http://localhost:5000/user-register",
                   {
                     method: "post",
                     body: JSON.stringify(obj),
@@ -101,7 +101,7 @@ const Enter = ({ titleData, btnData, flag }) => {
       if (email && password) {
         let obj = { email: email, password: password };
         let result = await fetch(
-          "https://shopshuttle.onrender.com/user-login",
+          "http://localhost:5000/user-login",
           {
             method: "post",
             body: JSON.stringify(obj),

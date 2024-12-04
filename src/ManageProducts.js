@@ -13,7 +13,7 @@ const ManageProducts = () => {
         getProducts();
     },[]);
     const getProducts = async ()=>{
-        let result = await fetch("https://shopshuttle.onrender.com/get-sellerProducts/" + seller._id,{
+        let result = await fetch("http://localhost:5000/get-sellerProducts/" + seller._id,{
             method:'get',
             headers:{
               'Content-Type':'application/json'
@@ -25,7 +25,7 @@ const ManageProducts = () => {
         }
     }
     const changeStatus = async (ID,STATUS) =>{
-        let result = await fetch('https://shopshuttle.onrender.com/statusChange/' + ID + '/' + STATUS,{
+        let result = await fetch('http://localhost:5000/statusChange/' + ID + '/' + STATUS,{
             method: 'put',
             headers:{
                 'Content-Type':'application/json'

@@ -18,7 +18,7 @@ const CartProductInner = () => {
     }, []);
     const getProduct = async()=>{
         console.log(ID.id);
-        let result = await fetch('https://shopshuttle.onrender.com/get-product/' + ID.id,{
+        let result = await fetch('http://localhost:5000/get-product/' + ID.id,{
             method:'get',
             headers:{
                 'Content-Type':'application/json'
@@ -35,7 +35,7 @@ const CartProductInner = () => {
     const addToCart = async () =>{
         if(localStorage.getItem('user')){
             const productID = cartIteminner[0]._id;
-            let result = await fetch('https://shopshuttle.onrender.com/add-cart/' + user +'/' + productID + '/' + editedQuantity,{
+            let result = await fetch('http://localhost:5000/add-cart/' + user +'/' + productID + '/' + editedQuantity,{
                 method:'post',
                 headers:{
                     'Content-Type':'application/json'
@@ -70,7 +70,7 @@ const CartProductInner = () => {
             const productID = cartIteminner[0]._id;
             let obj = { product: productID, quantity: editedQuantity };
             let array = [obj];
-            let result = await fetch('https://shopshuttle.onrender.com/add-order/' + user, {
+            let result = await fetch('http://localhost:5000/add-order/' + user, {
                 method: 'post',
                 headers: {
                     'Content-Type': 'application/json'
@@ -98,7 +98,7 @@ const CartProductInner = () => {
                     <div className='col-sm-12 col-md-8'>
                         <div className='row justify-content-center'>
                             <div className='col-sm-10 col-md-5 mb-3 mb-md-0'>
-                                <img src={`https://shopshuttle.onrender.com/${cartItem.photos[0].split('/').slice(5).join('/')}`} alt="Product" className="img-fluid border border-3 border-dark" />
+                                <img src={`http://localhost:5000/${cartItem.photos[0]}`} alt="Product" className="img-fluid border border-3 border-dark" />
                             </div>
                             <div className='mb-3 mb-md-0 col-sm-10 col-md-7'>
                                 <div className='row'>

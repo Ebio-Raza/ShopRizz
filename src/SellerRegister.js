@@ -33,7 +33,7 @@ const SellerRegister = () =>{
             if(contact_no.length==11){
           if(validatePassword(password)){
             let obj = {name:name, email:email,password:password,contact_no:contact_no,address:address};
-            let result = await fetch ('https://shopshuttle.onrender.com/seller-register',{
+            let result = await fetch ('http://localhost:5000/seller-register',{
               method:'post',
               body:JSON.stringify(obj),
               headers:{

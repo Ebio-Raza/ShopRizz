@@ -25,7 +25,7 @@ const SellerLogin = () =>{
     const submit = async () =>{
         if(email && password){
         let obj = {email:email,password:password};
-        let result = await fetch ('https://shopshuttle.onrender.com/seller-login',{
+        let result = await fetch ('http://localhost:5000/seller-login',{
               method:'post',
               body:JSON.stringify(obj),
               headers:{
