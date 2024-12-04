@@ -97,6 +97,8 @@ app.post('/seller-login', async (req,resp)=>{
 
 // < ======== Add Product Start =============>
 
+app.use("/Images", express.static(path.join(__dirname, "public/Images")));
+
 const storage = multer.diskStorage({
     destination: function(req,file,cb){
         return cb(null,"./public/Images",)
@@ -364,6 +366,24 @@ app.post('/add-order/:id', async (req,resp)=>{
 
 // < ========= Order Section End ===========>
 
+// < ========== Order Get Section Start ============= >
+app.get('/get-Order/:id',async(req,resp)=>{
+    let id = req.params.id;
+    let result = await Order.findOne({_id:id});
+    let array =[];
+    if(result){
+        for(let x=0;x<result.product_IDs.length;x++){
+            let data = await Product.findOne({_id:result.product_IDs[x].product});
+            if(data){
+                let obj={photos:data.photos,title:data.title,price:data.discount_price,Qty:result.product_IDs[x].quantity,deliveryCharges:data.deliveryCharges};
+                array.push(obj);
+            }
+        }
+    }
+    resp.send(array);
+});
+
+// < ========== Get Orders End ===========>
 // < ========= Get Seller Products Start ===========>
 
 app.get('/get-sellerProducts/:seller_id', async(req,resp)=>{
