@@ -101,7 +101,7 @@ const SellerRegister = () =>{
                         <div className="mt-3">Enter Address</div>
                         <input type="text" value={address} onChange={((e)=>{setAddress(e.target.value)})} className='form-control' placeholder='Address' />
                         <div className='text-center mt-3'>
-                           <button className='mt-2 btn-primary btn' onClick={submit} type='button'>Register</button>
+                           <div className="p-2 rounded text-white"><button className='btn btn-primary mt-2' onClick={submit} type='button'>Register</button></div>
                            <div className="mt-4 h5">Already Registered? <span><Link to="/seller-login" className="ms-1">Login</Link></span></div>
                         </div>
                     </div>

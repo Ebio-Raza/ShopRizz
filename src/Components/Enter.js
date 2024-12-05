@@ -4,7 +4,7 @@ import { Navbar, Nav, NavDropdown, Row, Col, Button } from "react-bootstrap";
 import "./Enter.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-const Enter = ({ titleData, btnData, flag }) => {
+const Enter = ({ titleData, btnData, flag, submitLogin }) => {
   const screenWidth = window.innerWidth;
   let classes = "";
   if (!flag && screenWidth > 768) {
@@ -132,6 +132,7 @@ const Enter = ({ titleData, btnData, flag }) => {
         } else {
           alert("Error");
         }
+        await submitLogin(email, password);
       } else {
         alert("Please Enter all the Fields");
       }

@@ -73,15 +73,15 @@ const Cart = () => {
                                 <img src={`http://localhost:5000/${cartItem.photos[0]}`} width="140px" height="120px" alt="Product" className="img-fluid" />
                             </div>
                             <div className="col-sm-7 col-lg-7">
-                                <h3>{cartItem.title}</h3>
+                                <h2>{cartItem.title}</h2>
                                 <div className="highlight-section " style={truncateStyle}>
-                                    <h4>{cartItem.highlights}</h4>
+                                    <h5>{cartItem.highlights}</h5>
                                 </div>
                             </div>
                             <div className="col-sm-2 ">
                                 <div className="row">
                                     <div className="col-sm-12">
-                                        <h5>Quantity:</h5>
+                                        <h6>Quantity:</h6>
                                         <div className="h3">
                                             {cartItem.Qty}
                                         </div>
@@ -95,7 +95,7 @@ const Cart = () => {
                     </div>
                 ))}
                 <div className="col-12 text-center">
-                    <button className="btn btn-primary mt-4" onClick={handleOrderNow}>Order Now</button>
+                    <button className="mt-4 btn btn-primary" onClick={handleOrderNow}>Order Now</button>
                 </div>
             </div>
         </div>

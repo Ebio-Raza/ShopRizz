@@ -42,9 +42,9 @@ const Cards = () => {
     }, []);
     return (
         <div className=" pb-5 m-0 p-0 bg-grey" >
-        <div className="h2 text-center pt-3 p-2" style={{fontFamily:'Tahoma, sans-serif',backgroundColor:'rgb(6, 158, 6)',color:'white'}}>Products</div>
         <div className="pt-5 m-0 p-0 row justify-content-center  pb-5">
          <div className="col-10">
+         <div className="h2 pt-3 p-2" style={{fontFamily:'Tahoma, sans-serif',color:'#212a45'}}>Explore Top Picks Tailored Just for You!</div>
           <div className="row" >
             {data && data.map((item) => (
                 <div className="col-lg-2 col-xl-2 col-md-3 col-sm-12 col-xs-12 col-12"   key={item._id}>

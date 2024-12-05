@@ -10,6 +10,7 @@ const NavbarComponent = () => {
         className="navbar-color row justify-content-center m-0 "
         collapseOnSelect
         expand="lg"
+        style={{ backgroundColor: '#212a45' }}
       >
         <div className="col-10 m-0 p-1">
           <div className="row">
@@ -17,7 +18,7 @@ const NavbarComponent = () => {
               <Link to="/">
                 <img
                   src="../images/logo1png.png"
-                  width="80px"
+                  width="60px"
                   className="img-fluid"
                   alt="vgg"
                 />

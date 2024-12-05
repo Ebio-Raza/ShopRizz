@@ -22,7 +22,7 @@ body{
   
 }
 .bg-green{
-  background-color: rgb(136, 210, 136);
+  background-color: #212a45;
 }
 .App-link {
  
@@ -31,7 +31,7 @@ body{
   background-color: rgb(213, 213, 213);
 }
 .navbar-color {
-  background-color: rgb(6, 158, 6);
+  background-color: red;
 }
 .positionStick{
   padding: 10px 0; /* Example padding */

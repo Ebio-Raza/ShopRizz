@@ -57,12 +57,12 @@ function App() {
               <>
                 <NavbarComponent />
                 <div className="row  bg-grey justify-content-center m-0 p-0">
-                  <div className="col-12 m-0">
+                  {/* <div className="col-12 m-0">
                     <Carousel images={images} />
-                  </div>
+                  </div> */}
                 </div>
-                <Categories data={data1} />
                 <Cards />
+                <Categories data={data1} />
               </>
             }
           />
@@ -181,7 +181,7 @@ function App() {
           <div className="col-10 col-md-10 col-lg-10">
             <div className="row justify-content-center">
               <div className="col-12 col-md-5 col-lg-4 ">
-                <h3 style={{ color: "rgb(6, 158, 6)" }}>Customer Care</h3>
+                <h3 style={{ color: "#212a45" }}>Customer Care</h3>
                 <ul className="list-unstyled">
                   <li>Help Center</li>
                   <li>How to Buy</li>
@@ -193,7 +193,7 @@ function App() {
               </div>
 
               <div className="col-12 col-md-5 col-lg-4">
-                <h3 style={{ color: "rgb(6, 158, 6)" }}>ShopRizz</h3>
+                <h3 style={{ color: "#212a45" }}>ShopRizz</h3>
                 <ul className="list-unstyled">
                   <li>About Us</li>
                   <li>Contact Us</li>
@@ -207,7 +207,7 @@ function App() {
               <div className="col-lg-4">
                 <div className="row justify-content-center">
                   <div className="col-12 col-md-5 col-lg-12">
-                    <h3 style={{ color: "rgb(6, 158, 6)" }}>Payment Methods</h3>
+                    <h3 style={{ color: "#212a45" }}>Payment Methods</h3>
                     <div className="row r">
                       <div className="col-3 p-2 m-0">
                         <FontAwesomeIcon
@@ -229,7 +229,7 @@ function App() {
                   </div>
 
                   <div className="col-12 col-md-5 col-lg-12 pt-lg-2 ">
-                    <h3 style={{ color: "rgb(6, 158, 6)" }}>Follow Us</h3>
+                    <h3 style={{ color: "#212a45" }}>Follow Us</h3>
                     <div className="row ">
                       <div className="col-3 p-2 m-0">
                         <FontAwesomeIcon
