@@ -14,85 +14,102 @@ const multer = require('multer');
 const path = require('path');
 app.use(express.json());
 app.use(cors());
+// Load environment variables from .env file
+require('dotenv').config();
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
+const secretKey = process.env.SECRET_KEY || mySecretKey12345;
 
 
-// <======  User Register  start =========>
-
-app.post('/user-register',async (req,resp)=>{
-    // const data = req.body;
-    // const result = await User.insertMany(data);
-    const check = await User.find({email:req.body.email});
-    if(check.length>0){
-        resp.send({result:"Already Registered"})
+// < ======== Token Verification Middleware =============>
+    function verifyToken(req, resp, next) {
+        const token = req.headers['authorization'];
+        if (token) {
+            jwt.verify(token, secretKey, (err, decoded) => {
+                if (err) {
+                    resp.status(401).send({ result: "Unauthorized Access" });
+                } else {
+                    req.user = decoded; // Decoded token info (e.g., id, email)
+                    next();
+                }
+            });
+        } else {
+            resp.status(403).send({ result: "Token Required" });
+        }
     }
-    else{
-    let user = new User(req.body);
-    let result = await user.save();
-    result = result.toObject();
-    delete result.password;
-    resp.send(result);
-    }
-});
+// < ======== Token Verification Middleware End =============>    
 
-// <======  User Register  end =========>
+// <====== User Register Start =========>
+    app.post('/user-register', async (req, resp) => {
+        const check = await User.findOne({ email: req.body.email });
+        if (check) {
+            resp.send({ result: "Already Registered" });
+        } else {
+            const hashedPassword = await bcrypt.hash(req.body.password, 10);
+            const user = new User({ ...req.body, password: hashedPassword });
+            let result = await user.save();
+            result = result.toObject();
+            delete result.password;
+            // Optionally, generate and return a token after registration.
+            const token = jwt.sign({ id: result._id, email: result.email }, secretKey, { expiresIn: "2d" });
+            resp.send({ user: result, token }); // Return user data and token
+        }
+    });
+    
+// <====== User Register End =========>
 
-// <======  Seller Register  start =========>
-
-app.post('/seller-register',async (req,resp)=>{
-    // const data = req.body;
-    // const result = await User.insertMany(data);
-    const check = await Seller.find({email:req.body.email});
-    if(check.length>0){
-        console.log(check);
-        resp.send({result:"Already Registered"})
-    }
-    else{
-    let seller = new Seller(req.body);
-    let result = await seller.save();
-    result = result.toObject();
-    delete result.password;
-    resp.send(result);
-    }
-});
-
-// <======  Seller Register  end =========>
+// <====== Seller Register Start =========>
+    app.post('/seller-register', async (req, resp) => {
+        const check = await Seller.findOne({ email: req.body.email });
+        if (check) {
+            resp.send({ result: "Already Registered" });
+        } else {
+            const hashedPassword = await bcrypt.hash(req.body.password, 10);
+            const seller = new Seller({ ...req.body, password: hashedPassword });
+            let result = await seller.save();
+            result = result.toObject();
+            delete result.password;
+            // Optionally, generate and return a token after registration.
+            const token = jwt.sign({ id: result._id, email: result.email }, secretKey, { expiresIn: "2d" });
+            resp.send({ seller: result, token }); // Return seller data and token
+        }
+    });
+    
+// <====== Seller Register End =========>
 
 // < ======== User Login Start =============>
-
-app.post('/user-login', async (req,resp)=>{
-    if(req.body.email && req.body.password){
-        const result = await User.findOne(req.body).select("-password");
-        if(result){
-            resp.send(result);
+app.post('/user-login', async (req, resp) => {
+    if (req.body.email && req.body.password) {
+        const user = await User.findOne({ email: req.body.email });
+        console.log()
+        if (user && await bcrypt.compare(req.body.password, user.password)) {
+            // Generate JWT token
+            const token = jwt.sign({ id: user._id, email: user.email }, secretKey, { expiresIn: "2d" });
+            resp.send({ user: { ...user.toObject(), password: undefined }, token });
+        } else {
+            resp.send({ result: "Invalid Email or Password" });
         }
-        else{
-            resp.send({result:"Not Found"});
-        }
-    }
-    else{
-         resp.send({result:"Enter Correct Info"});
-    }
-});
-
-// < ======== User Login End =============>
-
-// < ======== Seller Login Start =============>
-
-app.post('/seller-login', async (req,resp)=>{
-    if(req.body.email && req.body.password){
-        const result = await Seller.findOne(req.body).select("-password");
-        if(result){
-            resp.send(result);
-        }
-        else{
-            resp.send({result:"Not Found"});
-        }
-    }
-    else{
-         resp.send({result:"Enter Correct Info"});
+    } else {
+        resp.send({ result: "Enter Correct Info" });
     }
 });
+// < ======== User Login Start =============>
 
+// < ======== Seller Login start =============>
+app.post('/seller-login', async (req, resp) => {
+    if (req.body.email && req.body.password) {
+        const seller = await Seller.findOne({ email: req.body.email });
+        if (seller && await bcrypt.compare(req.body.password, seller.password)) {
+            // Generate JWT token
+            const token = jwt.sign({ id: seller._id, email: seller.email }, secretKey, { expiresIn: "2d" });
+            resp.send({ seller: { ...seller.toObject(), password: undefined }, token });
+        } else {
+            resp.send({ result: "Invalid Email or Password" });
+        }
+    } else {
+        resp.send({ result: "Enter Correct Info" });
+    }
+});
 // < ======== Seller Login End =============>
 
 // < ======== Add Product Start =============>
